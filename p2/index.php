@@ -1,5 +1,7 @@
 <?php 
-$carrera = $_POST['carreras'] ?? '';
+if(isset($_POST['aceptar0'])){
+	$carrera = $_POST['carreras'] ?? '';
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +45,15 @@ $carrera = $_POST['carreras'] ?? '';
 				<div class="panel panel-default" class="otro"> <!-- INICIA PANEL -->
 					<div class="panel-body" >
 						<div class="contenedor"> <!-- INICIA CONTENEDOR -->
-							<form method="POST" class="form1">
+							
+
+							 <div class="cajas">
+<form method="POST" class="form1">
 								<fieldset> <!-- INICIA FIELD 1 -->
 										<legend>Datos personales</legend>
 										<p>Nombre <input type="text" name="nombre" id="input" class="form-control" value="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" required="required"  title=""></p>
-										<p>Correo electronico <input type="email" name="correo" id="input" class="form-control" value="" pattern="/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/" required="required" title=""></p>
-										<p>Edad <input type="number" name="edad" id="input" class="form-control" value="" min="0" required="required" title=""></p>
+										<p>Correo electronico <input type="email" name="correo" id="input" class="form-control" value="" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" required="required" title=""></p>
+										<p>Edad <input type="number" name="edad" id="input" class="form-control" value="" min="0" pattern="/^[1-9][0-9]{0,2}$/" required="required" title=""></p>
 								</fieldset> <!-- TERMINA FIELD 1 -->
 
 								<fieldset><!-- INICIA FIELD 2-->
@@ -60,7 +65,7 @@ $carrera = $_POST['carreras'] ?? '';
 									</select> <!-- TERMINA FIELD 2-->
 								</fieldset>
 
-								<input type="submit" value="mostrar">
+								<input type="submit" name="aceptar0" value="mostrar">
 							</form>
 
 							<?php 
@@ -68,7 +73,7 @@ $carrera = $_POST['carreras'] ?? '';
 							{
 							?>
 							
-							<form method="POST" action="/p2/procesar.php" class="form1">
+							<form method="POST" class="form1">
 								<input type="hidden" name="carreras" id="input" class="form-control" value="<?php echo $carrera;?>">
 								<input type="hidden" name="nombre" id="input" class="form-control" value="<?php echo $_POST['nombre'];?>">
 								<input type="hidden" name="correo" id="input" class="form-control" value="<?php echo $_POST['correo'];?>">
@@ -103,11 +108,22 @@ $carrera = $_POST['carreras'] ?? '';
 								}
 								?>
 
-								<input type="submit" value="Aceptar">
+								<input type="submit" name="aceptar" value="Aceptar">
 							</form>
 						     <?php 
 						     }
 						     ?>
+							 </div>
+
+							 <div class="resultados">
+								<?php 
+							 if(isset($_POST['aceptar'])){
+								include 'procesar.php';
+							 }
+							 ?>
+							 </div>
+
+							 
 						</div> <!-- TERMINA CONTENEDOR -->
 					</div>
 				</div> <!-- TERMINA PANEL -->

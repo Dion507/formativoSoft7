@@ -5,19 +5,22 @@ class Estudiante
     public $datos;
 	public $materias;
 	
-	function __construct($data,$mater)
+	function __construct($mater,$data)
 	{
 		
         $this->datos=$data;
         $this->materias=$mater;
 	}
 
-}
-
-function obtenerDatos(){
-
-}
-function obtenerMaterias(){
+	function obtenerDatos(){
+	return $this -> datos;
+    }
     
+	function obtenerMaterias(){
+    return $this -> materias;
+    }
 }
+
+
 ?>
+

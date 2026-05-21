@@ -5,14 +5,27 @@ fieldset {
 }
 
 .contenedor {
-    width: 600px;
+    width: 100%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+    gap: 40px;
+
+    align-items: flex-start;
 }
 
-.form1{
+.form1 {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
     gap: 20px;
 }
 
+.cajas {
+    width: 350px;
+}
 
+.resultados {
+    flex: 1;
+}

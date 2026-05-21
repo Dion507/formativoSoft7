@@ -1,5 +1,8 @@
 <?php 
 
+include 'ClaseEstudiante.php';
+
+// Inicializar variables
 $carreraOn = [ //Reutilizar en salida.php
     "DS" => "Desarrolo de Software",
     "redes" => "Redes",
@@ -21,10 +24,11 @@ $codigos = [
     "CIB303" => "Hackeo Ético"
 ];
 
-$datosEstudiante = [
+$datosEstudiante = [ // Inicializa arreglo unidimencional de los datos del estudiante 
     "nombre" => $_POST['nombre'],
     "correo" => $_POST['correo'],
-    "edad" => $_POST['edad']
+    "edad" => $_POST['edad'],
+    "carrera" => $carreraOn[$_POST['carreras']]
 ];
 
 $nombreCodigo = "";
@@ -32,6 +36,7 @@ $nombreCodigo = "";
 $materia = $_POST['car'];
 $materiaBi = [];
 
+// Codigo para crear materas en arreglo bidimencional de materias
 foreach($materia as $codigo){
     foreach($codigos as $clave => $valor){
         if($codigo == $clave){
@@ -45,11 +50,10 @@ foreach($materia as $codigo){
     ];
 }
 
-
-
-validarEstudiante($datosEstudiante);
+validarEstudiante($datosEstudiante); // Metodo que valida los campos nombre, correo, edad
 
 function validarEstudiante($datosEstudiante){
+    // Patronres
     $patrones = [
         "nombres" => "/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/",
         "correos" => "/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/",
@@ -57,28 +61,40 @@ function validarEstudiante($datosEstudiante){
     ];
 
     try {
-
+        if($datosEstudiante["nombre"] == '' || $datosEstudiante["correo"] == '' || $datosEstudiante["edad"] == ''){
+            throw new Exception("Ingrese los campos necesarios");
+            return;
+        }
+        // Valida nombres
         if(!(preg_match($patrones["nombres"],$datosEstudiante["nombre"]))){
             throw new Exception("Los patrones del nombre no coenciden");
             return;
         }
-        if(!(preg_match($patrones["correos"],$datosEstudiante["correo"]))){
+
+        // Valida correo usando la funcion filter_var
+        if(!(filter_var($datosEstudiante["correo"], FILTER_VALIDATE_EMAIL))){
             throw new Exception("Los patrones del correo no coenciden");
             return;
         }
+
+        // Valida edad
         if(!(preg_match($patrones["edades"],$datosEstudiante["edad"]))){
             throw new Exception("Los patrones de la edad no coenciden");
             return;
         }
-
+        
+       
     } catch (Exception $e){
         return "Error: ".$e -> getMessage();
     }
 }
-echo $carrera;
-echo '<br>';
-print_r($materiaBi);
-echo '<br>';
-print_r($datosEstudiante);
+
+// Borrar despues
+
+
+// Inicializar la clase estudiante 
+$Student = new Estudiante($materiaBi,$datosEstudiante);
+
+include 'salida.php';
 
 ?>
