@@ -5,7 +5,6 @@ fieldset {
 }
 
 .contenedor {
-<<<<<<< HEAD
     width: 100%;
     max-width: 1200px;
 
@@ -30,16 +29,3 @@ fieldset {
 .resultados {
     flex: 1;
 }
-=======
-    width: 600px;
-}
-
-.form1{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-
->>>>>>> p1
