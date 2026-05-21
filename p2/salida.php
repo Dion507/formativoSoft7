@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 $datos = $Student->obtenerDatos();
@@ -103,5 +104,9 @@ echo '
 
 </div>
 ';
+=======
+<?php 
+
+>>>>>>> p1
 
 ?>
