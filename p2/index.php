@@ -1,3 +1,7 @@
+<?php 
+$carrera = $_POST['carreras'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="">
 	<head>
@@ -38,30 +42,73 @@
 			<main> <!-- INICIA MAIN -->
 				<div class="panel panel-default" class="otro"> <!-- INICIA PANEL -->
 					<div class="panel-body" >
-						<div class="contenedor">
-							<form method="POST" action="" class="form1">
-									<fieldset> <!-- INICIA FIELD 1 -->
+						<div class="contenedor"> <!-- INICIA CONTENEDOR -->
+							<form method="POST" class="form1">
+								<fieldset> <!-- INICIA FIELD 1 -->
 										<legend>Datos personales</legend>
-										<p>Nombre <input type="text" name="nombre" id="input" class="form-control" value="" required="required" pattern="" title=""></p>
-										<p>Correo electronico <input type="email" name="" id="input" class="form-control" value="" required="required" title=""></p>
-										<p>Edad <input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title=""></p>
-										
-									</fieldset> <!-- TERMINA FIELD 1 -->
+										<p>Nombre <input type="text" name="nombre" id="input" class="form-control" value="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" required="required"  title=""></p>
+										<p>Correo electronico <input type="email" name="correo" id="input" class="form-control" value="" pattern="/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/" required="required" title=""></p>
+										<p>Edad <input type="number" name="edad" id="input" class="form-control" value="" min="0" required="required" title=""></p>
+								</fieldset> <!-- TERMINA FIELD 1 -->
 
-									<fieldset>
-										<legend>Carrera y materias</legend> 
-										<form  method="POST" action="<?php ?>" class="form2">
-											<label>Seleccione carrerra</label>
-											 <select name="carreras" id="input" class="form-control">
-												<option value="ds">Desarrollo de Software</option>
-												<option value="redes">Redes</option>
-												<option value="ciber">Ciberseguridad</option>
-											</select>
+								<fieldset><!-- INICIA FIELD 2-->
+									<legend>Carrera y materias</legend>
+									<select name="carreras" id="input" class="form-control" required="required">
+										<option value="DS">Desarrolo de Software</option>
+										<option value="redes">Redes</option>
+										<option value="ciber">Ciberseguridad</option>
+									</select> <!-- TERMINA FIELD 2-->
+								</fieldset>
 
-										</form>
-									</fieldset>
-								</form>
-						</div>
+								<input type="submit" value="mostrar">
+							</form>
+
+							<?php 
+							if($carrera != '')
+							{
+							?>
+							
+							<form method="POST" action="/p2/procesar.php" class="form1">
+								<input type="hidden" name="carreras" id="input" class="form-control" value="<?php echo $carrera;?>">
+								<input type="hidden" name="nombre" id="input" class="form-control" value="<?php echo $_POST['nombre'];?>">
+								<input type="hidden" name="correo" id="input" class="form-control" value="<?php echo $_POST['correo'];?>">
+								<input type="hidden" name="edad" id="input" class="form-control" value="<?php echo $_POST['edad'];?>">
+								
+								<?php 
+								if($carrera == 'DS'){
+									echo '<div class="maters">
+									<h1>Seleccione materias</h1><br> 
+									<input type="checkbox" name="car[]" value="DS101">Programación I  <br>
+									<input type="checkbox" name="car[]" value="DS202">Base de Datos  <br>
+								    <input type="checkbox" name="car[]" value="DS303">Ingeniería de Software 
+								</div>
+									';
+								} elseif ($carrera == 'redes') {
+									echo '
+									<div class="maters">
+									<h1>Seleccione materias</h1><br> 
+									<input type="checkbox" name="car[]" value="RED101">Redes I  <br>
+									<input type="checkbox" name="car[]" value="RED202">Seguridad Informática <br>
+								</div>
+									';
+								} elseif($carrera == 'ciber'){
+									echo '
+									<div class="maters">
+									<h1>Seleccione materias</h1><br> 
+									<input type="checkbox" name="car[]" value="CIB101">Criptografía <br>
+									<input type="checkbox" name="car[]" value="CIB202">Análisis de Forense<br>
+									<input type="checkbox" name="car[]" value="CIB303">Hackeo Ético
+								</div>
+									';
+								}
+								?>
+
+								<input type="submit" value="Aceptar">
+							</form>
+						     <?php 
+						     }
+						     ?>
+						</div> <!-- TERMINA CONTENEDOR -->
 					</div>
 				</div> <!-- TERMINA PANEL -->
 			</main> <!-- TERMINA MAIN -->
