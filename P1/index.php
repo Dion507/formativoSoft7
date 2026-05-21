@@ -20,14 +20,15 @@ if (!empty($_GET['error'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../otros/otro.css">
 </head>
 <body>
 
 <!--INICIA NAVBAR-->
-<?php include '../Nav Y Footer/nav.html'; ?>
+<?php include '../otros/nav.html'; ?>
 <!-- FIN NAVBAR -->
 <!-- INICIA  HERO -->
-     <?php include 'HTML/Hero.html'; ?>
+     <?php include '../otros/hero.html'; ?>
 <!-- FIN HERO -->
 <!-- ====================================================
      CONTENIDO PRINCIPAL
@@ -256,7 +257,7 @@ if (!empty($_GET['error'])) {
 </main>
 
 <!--inicia FOOTER -->
-<?php include '../Nav Y Footer/footer.html'; ?>
+<?php include '../otros/foot.html'; ?>
 <!--Termina FOOTER -->
 <!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

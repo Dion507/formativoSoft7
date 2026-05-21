@@ -1,0 +1,177 @@
+/* =====================================================
+   navbar-footer.css — Componentes reutilizables
+   Navbar + Footer — Universidad Tecnológica de Panamá
+   ===================================================== */
+
+/* ── Variables globales (solo las necesarias) ───────── */
+:root {
+    --color-btn:          #007BFF;
+    --color-btn-hover:    #0056B3;
+    --color-texto:        #333333;
+    --color-acento:       #F4A261;
+    --color-acento-dark:  #E07B39;
+    --color-purple-light: #E8F0FE;
+    --color-purple-mid:   #66AAF9;
+    --color-purple-dark:  #003D7A;
+    --color-purple-bg:    #EBF4FF;
+    --transition:         all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════════════
+   NAVBAR
+   ══════════════════════════════════════════════════════ */
+
+.navbar-utp {
+    background: linear-gradient(90deg, var(--color-purple-dark) 0%, var(--color-btn) 100%);
+    box-shadow: 0 2px 12px rgba(0, 86, 179, 0.25);
+    padding: 0.6rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+}
+
+.navbar-utp .navbar-brand {
+    color: #fff !important;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-utp .navbar-brand .brand-icon {
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.navbar-utp .nav-link {
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-weight: 500;
+    font-size: 0.88rem;
+    padding: 0.4rem 0.9rem !important;
+    border-radius: 50px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.navbar-utp .nav-link:hover,
+.navbar-utp .nav-link.active {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.navbar-utp .nav-link.active {
+    font-weight: 700;
+}
+
+.navbar-badge {
+    background: #fff;
+    color: var(--color-btn);
+    font-size: 0.62rem;
+    font-weight: 800;
+    border-radius: 50px;
+    padding: 1px 7px;
+    margin-left: 3px;
+    letter-spacing: 0.4px;
+}
+
+.navbar-utp .navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.3rem 0.55rem;
+}
+
+.navbar-utp .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════ */
+
+.footer-utp {
+    background: linear-gradient(135deg, var(--color-purple-dark) 0%, var(--color-btn) 100%);
+    color: rgba(255, 255, 255, 0.78);
+    padding: 2rem 0 1.25rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+}
+
+/* Línea superior naranja */
+.footer-utp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-acento), var(--color-btn), var(--color-acento));
+}
+
+.footer-brand {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.footer-utp p {
+    font-size: 0.81rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.12);
+    margin: 1.2rem 0 1rem;
+}
+
+.footer-bottom {
+    font-size: 0.77rem;
+    color: rgba(255, 255, 255, 0.48);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    font-size: 0.79rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 1rem;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 480px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin-left: 0.5rem;
+    }
+}

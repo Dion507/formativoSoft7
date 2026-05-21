@@ -1,0 +1,27 @@
+<nav class="fs-nav" id="fs-nav">
+  <a href="../P1/index.php" class="fs-nav-logo">FormativoSoft7</a>
+
+  <button type="button" class="fs-nav-hamburger" id="fs-hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="fs-nav-links" id="fs-nav-links">
+    <li><a href="../P1/index.php">P1</a></li>
+    <li><a href="../p2/index.php">P2</a></li>
+  </ul>
+</nav>
+
+<script>
+  (function () {
+    const hamburger = document.getElementById('fs-hamburger');
+    const navLinks = document.getElementById('fs-nav-links');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', function () {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
