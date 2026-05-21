@@ -4,3 +4,13 @@ fieldset {
     gap: 12px;
 }
 
+.contenedor {
+    width: 600px;
+}
+
+.form1{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: 20px;
+}
