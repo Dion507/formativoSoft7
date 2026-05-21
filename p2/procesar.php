@@ -1,100 +1,217 @@
-<?php 
+<?php
 
 include 'ClaseEstudiante.php';
 
-// Inicializar variables
-$carreraOn = [ //Reutilizar en salida.php
-    "DS" => "Desarrolo de Software",
-    "redes" => "Redes",
-    "ciber" => "Ciberseguridad"
-];
-$codigos = [
-    // Desarrollo de Software
-    "DS101" => "Programación I",
-    "DS202" => "Base de Datos",
-    "DS303" => "Ingeniería de Software",
+class Proceso
+{
+    public $carreraOn;
+    public $codigos;
 
-    // Redes
-    "RED101" => "Redes I",
-    "RED202" => "Seguridad Informática",
+    public $datosEstudiante;
 
-    // Ciberseguridad
-    "CIB101" => "Criptografía",
-    "CIB202" => "Análisis Forense",
-    "CIB303" => "Hackeo Ético"
-];
+    public $materia;
 
-$datosEstudiante = [ // Inicializa arreglo unidimencional de los datos del estudiante 
-    "nombre" => $_POST['nombre'],
-    "correo" => $_POST['correo'],
-    "edad" => $_POST['edad'],
-    "carrera" => $carreraOn[$_POST['carreras']]
-];
+    public $materiaBi = [];
 
-$nombreCodigo = "";
+    public $Student;
 
-$materia = $_POST['car'];
-$materiaBi = [];
 
-// Codigo para crear materas en arreglo bidimencional de materias
-foreach($materia as $codigo){
-    foreach($codigos as $clave => $valor){
-        if($codigo == $clave){
-            $nombreCodigo = $valor;
+    function __construct()
+    {
+
+        // Inicializar variables
+        $this->carreraOn = [
+
+            "DS" => "Desarrolo de Software",
+
+            "redes" => "Redes",
+
+            "ciber" => "Ciberseguridad"
+        ];
+
+
+        $this->codigos = [
+
+            // Desarrollo de Software
+            "DS101" => "Programación I",
+            "DS202" => "Base de Datos",
+            "DS303" => "Ingeniería de Software",
+
+            // Redes
+            "RED101" => "Redes I",
+            "RED202" => "Seguridad Informática",
+
+            // Ciberseguridad
+            "CIB101" => "Criptografía",
+            "CIB202" => "Análisis Forense",
+            "CIB303" => "Hackeo Ético"
+        ];
+
+
+        // Datos estudiante
+        $this->datosEstudiante = [
+
+            "nombre" => $_POST['nombre'],
+
+            "correo" => $_POST['correo'],
+
+            "edad" => $_POST['edad'],
+
+            "carrera" =>
+            $this->carreraOn[$_POST['carreras']]
+        ];
+
+
+        $this->materia = $_POST['car'];
+
+
+        $nombreCodigo = "";
+
+
+        // Crear arreglo bidimensional
+        foreach($this->materia as $codigo){
+
+            foreach($this->codigos as $clave => $valor){
+
+                if($codigo == $clave){
+
+                    $nombreCodigo = $valor;
+
+                }
+
+            }
+
+            $this->materiaBi[] = [
+
+                "nombre" => $nombreCodigo,
+
+                "codigo" => $codigo
+            ];
+
         }
+
+
+        // Crear objeto estudiante
+        $this->Student = new Estudiante(
+            $this->materiaBi,
+            $this->datosEstudiante
+        );
+
     }
 
-    $materiaBi[] = [
-        "nombre" => $nombreCodigo,
-        "codigo" => $codigo
-    ];
-}
 
-validarEstudiante($datosEstudiante); // Metodo que valida los campos nombre, correo, edad
+    function validarEstudiante()
+    {
 
-function validarEstudiante($datosEstudiante){
-    // Patronres
-    $patrones = [
-        "nombres" => "/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/",
-        "correos" => "/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/",
-        "edades" => "/^[1-9][0-9]{0,2}$/"
-    ];
+        // Patrones
+        $patrones = [
 
-    try {
-        if($datosEstudiante["nombre"] == '' || $datosEstudiante["correo"] == '' || $datosEstudiante["edad"] == ''){
-            throw new Exception("Ingrese los campos necesarios");
-            return;
+            "nombres" =>
+            "/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/",
+
+            "edades" =>
+            "/^[1-9][0-9]{0,2}$/",
+
+            "correo" => "/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$/"
+        ];
+
+        try {
+
+            // CAMPOS VACIOS
+            if(
+
+                $this->datosEstudiante["nombre"] == '' ||
+
+                $this->datosEstudiante["correo"] == '' ||
+
+                $this->datosEstudiante["edad"] == ''
+
+            ){
+
+                throw new Exception(
+                    "Ingrese todos los campos"
+                );
+
+            }
+
+
+            // NOMBRE
+            if(
+
+                !preg_match(
+
+                    $patrones["nombres"],
+
+                    $this->datosEstudiante["nombre"]
+
+                )
+
+            ){
+
+                throw new Exception(
+                    "Nombre inválido"
+                );
+
+            }
+
+
+            // CORREO
+            if(
+
+                !preg_match(
+
+                    $patrones["correo"],
+
+                    $this->datosEstudiante["correo"]
+
+                )
+
+            ){
+
+                throw new Exception(
+                    "Correo inválido"
+                );
+
+            }
+
+
+            // EDAD
+            if(
+
+                !preg_match(
+
+                    $patrones["edades"],
+
+                    $this->datosEstudiante["edad"]
+
+                )
+
+            ){
+
+                throw new Exception(
+                    "Edad inválida"
+                );
+
+            }
+
+            if($this->materia == null){
+                throw new Exception(
+                    "Debe seleccionar materias"
+                );
+            }
+
+            return true;
+
         }
-        // Valida nombres
-        if(!(preg_match($patrones["nombres"],$datosEstudiante["nombre"]))){
-            throw new Exception("Los patrones del nombre no coenciden");
-            return;
+        catch(Exception $e){
+
+            return "Error: " .
+            $e->getMessage();
+
         }
 
-        // Valida correo usando la funcion filter_var
-        if(!(filter_var($datosEstudiante["correo"], FILTER_VALIDATE_EMAIL))){
-            throw new Exception("Los patrones del correo no coenciden");
-            return;
-        }
-
-        // Valida edad
-        if(!(preg_match($patrones["edades"],$datosEstudiante["edad"]))){
-            throw new Exception("Los patrones de la edad no coenciden");
-            return;
-        }
-        
-       
-    } catch (Exception $e){
-        return "Error: ".$e -> getMessage();
     }
+
 }
-
-// Borrar despues
-
-
-// Inicializar la clase estudiante 
-$Student = new Estudiante($materiaBi,$datosEstudiante);
-
-include 'salida.php';
 
 ?>

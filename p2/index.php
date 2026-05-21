@@ -53,7 +53,7 @@ if(isset($_POST['aceptar0'])){
 										<legend>Datos personales</legend>
 										<p>Nombre <input type="text" name="nombre" id="input" class="form-control" value="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" required="required"  title=""></p>
 										<p>Correo electronico <input type="email" name="correo" id="input" class="form-control" value="" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" required="required" title=""></p>
-										<p>Edad <input type="number" name="edad" id="input" class="form-control" value="" min="0" pattern="/^[1-9][0-9]{0,2}$/" required="required" title=""></p>
+										<p>Edad <input type="number" name="edad" id="input" class="form-control" value="" min="1" max="150" pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$/" required="required" title=""></p>
 								</fieldset> <!-- TERMINA FIELD 1 -->
 
 								<fieldset><!-- INICIA FIELD 2-->
@@ -119,6 +119,23 @@ if(isset($_POST['aceptar0'])){
 								<?php 
 							 if(isset($_POST['aceptar'])){
 								include 'procesar.php';
+								
+								$proceso = new proceso();
+								$validar = $proceso -> validarEstudiante();
+
+                                if($validar === true)
+                                {
+									$Student = $proceso->Student;
+									include 'salida.php';
+                                } 
+                                else
+                                {    
+                                echo '
+                                <div class="alert alert-danger">
+                                '.$validar.'
+                                </div>
+                                ';
+                                }
 							 }
 							 ?>
 							 </div>
