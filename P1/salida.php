@@ -35,41 +35,11 @@ $arrayCompleto    = $persona->ObtenerArrayCompleto(); // Array 1D completo
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="../otros/otro.css">
 </head>
 <body>
 
-<!-- ====================================================
-     NAVBAR
-     ==================================================== -->
-<nav class="navbar navbar-expand-lg navbar-utp">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">
-            <div class="brand-icon"><i class="bi bi-mortarboard-fill"></i></div>
-            <span>UTP <span style="opacity:0.6;font-weight:400">·</span> Dev Software VII</span>
-        </a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarRes"
-                aria-controls="navbarRes" aria-expanded="false" aria-label="Menú">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarRes">
-            <ul class="navbar-nav ms-auto gap-1">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.php">
-                        <i class="bi bi-ui-checks"></i> Formulario P1
-                        <span class="navbar-badge">GET</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../p2/index.php">
-                        <i class="bi bi-person-vcard"></i> Formulario P2
-                        <span class="navbar-badge">POST</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include '../otros/nav.html'; ?>
 
 <!-- ====================================================
      HERO BANNER
@@ -222,50 +192,7 @@ $arrayCompleto    = $persona->ObtenerArrayCompleto(); // Array 1D completo
 
 </main>
 
-<!-- ====================================================
-     FOOTER
-     ==================================================== -->
-<footer class="footer-utp">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <div class="footer-brand">
-                    <i class="bi bi-mortarboard-fill"></i>
-                    Formativo Formulario
-                </div>
-                <p>
-                    Módulo II — Aplicaciones Web Interactivas en PHP<br>
-                    Facultad de Ingeniería de Sistemas Computacionales
-                </p>
-            </div>
-            <div class="col-md-3 mb-3 mb-md-0">
-                <p class="fw-bold text-white mb-2" style="font-size:0.85rem;">Integrantes:</p>
-                <p>
-                    <br class="badge-outline-utp">Oliver González </br>
-                    <br class="badge-outline-utp">Daniel Ubarte 5</br>
-                    <br class="badge-outline-utp">Gerardo Tejada</br>
-                    <br class="badge-outline-utp">Miguel Gomez</br>
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="fw-bold text-white mb-2" style="font-size:0.85rem;">Docente</p>
-                <p>
-                    <i class="bi bi-person-workspace me-1"></i>
-                    Ing. María Yahaira Tejedor M. MSc.<br>
-                    <i class="bi bi-building me-1"></i> UTP Panamá
-                </p>
-            </div>
-        </div>
-        <hr class="footer-divider">
-        <div class="footer-bottom">
-            <span>© 2025 Universidad Tecnológica de Panamá — Desarrollo de Software VII</span>
-            <div class="footer-links">
-                <a href="index.php"><i class="bi bi-house-fill"></i> P1</a>
-                <a href="../p2/index.php"><i class="bi bi-person-vcard-fill"></i> P2</a>
-            </div>
-        </div>
-    </div>
-</footer>
+<?php include '../otros/foot.html'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmBRr4phA1EYkM/v2qb1mFJhZD/I"
